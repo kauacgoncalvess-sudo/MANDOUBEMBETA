@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MANDOU BEM — plataforma de delivery.">
+  <title>MANDOU BEM — Delivery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <span class="logo-icon">✓</span>
+      <span>MANDOU <strong>BEM</strong></span>
+    </div>
+
+    <div class="location">
+      📍 <span>Entregar em</span>
+      <strong>São José do Rio Preto</strong> ▾
+    </div>
+
+    <div class="header-actions">
+      <button class="login-btn" type="button">Entrar</button>
+      <button class="cart-button" type="button" onclick="openCart()">
+        🛒 <span>Carrinho</span> <b id="cart-count">0</b>
+      </button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-tag">🔥 SEU PEDIDO, SEU JEITO</span>
+      <h1>Bateu a fome?<br><span>MANDOU BEM.</span></h1>
+      <p>Encontre os melhores restaurantes, lanches, mercados e muito mais perto de você.</p>
+
+      <div class="search-box">
+        <span>🔎</span>
+        <input id="searchInput" type="text" placeholder="Busque por comida ou restaurante..." oninput="searchRestaurants()">
+        <button type="button">Buscar</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">
+      <h2>O que você está procurando?</h2>
+      <span>Ver tudo →</span>
+    </div>
+
+    <div class="categories">
+      <div class="category" onclick="filterCategory('Hambúrguer')"><div class="category-icon">🍔</div><p>Hambúrguer</p></div>
+      <div class="category" onclick="filterCategory('Pizza')"><div class="category-icon">🍕</div><p>Pizza</p></div>
+      <div class="category" onclick="filterCategory('Japonesa')"><div class="category-icon">🍣</div><p>Japonesa</p></div>
+      <div class="category" onclick="filterCategory('Brasileira')"><div class="category-icon">🍛</div><p>Brasileira</p></div>
+      <div class="category" onclick="filterCategory('Açaí')"><div class="category-icon">🍇</div><p>Açaí</p></div>
+      <div class="category" onclick="filterCategory('Doces')"><div class="category-icon">🍰</div><p>Doces</p></div>
+      <div class="category" onclick="filterCategory('Bebidas')"><div class="category-icon">🥤</div><p>Bebidas</p></div>
+      <div class="category" onclick="filterCategory('Mercado')"><div class="category-icon">🛒</div><p>Mercado</p></div>
+    </div>
+  </section>
+
+  <section class="promo">
+    <div class="promo-text">
+      <span>OFERTAS ESPECIAIS</span>
+      <h2>Hoje tem<br><strong>MANDOU BEM!</strong></h2>
+      <p>Descontos especiais nos melhores restaurantes.</p>
+      <button type="button">Ver ofertas</button>
+    </div>
+    <div class="promo-emoji">🍔</div>
+  </section>
+
+  <main class="section restaurants-section">
+    <div class="section-title">
+      <div>
+        <h2>Restaurantes perto de você</h2>
+        <p class="subtitle">Os mais pedidos da região</p>
+      </div>
+      <button class="see-all" type="button" onclick="showAllRestaurants()">Ver todos →</button>
+    </div>
+
+    <div class="restaurants" id="restaurants">
+      <article class="restaurant-card" data-category="Hambúrguer" data-name="Burger House" onclick="addToCart('Burger House — Combo Clássico', 34.90)">
+        <div class="restaurant-image burger"><span class="discount">20% OFF</span>🍔</div>
+        <div class="restaurant-info">
+          <div class="restaurant-header"><h3>Burger House</h3><span class="rating">★ 4.8</span></div>
+          <p>Hambúrguer • Lanches</p>
+          <div class="restaurant-meta"><span>🛵 25–35 min</span><span>R$ 5,99 entrega</span></div>
+        </div>
+      </article>
+
+      <article class="restaurant-card" data-category="Pizza" data-name="Bella Pizza" onclick="addToCart('Bella Pizza — Pizza Média', 49.90)">
+        <div class="restaurant-image pizza"><span class="discount">15% OFF</span>🍕</div>
+        <div class="restaurant-info">
+          <div class="restaurant-header"><h3>Bella Pizza</h3><span class="rating">★ 4.9</span></div>
+          <p>Pizza • Italiana</p>
+          <div class="restaurant-meta"><span>🛵 30–40 min</span><span>R$ 4,99 entrega</span></div>
+        </div>
+      </article>
+
+      <article class="restaurant-card" data-category="Japonesa" data-name="Sushi Tokyo" onclick="addToCart('Sushi Tokyo — Combo 20 peças', 59.90)">
+        <div class="restaurant-image sushi"><span class="discount">10% OFF</span>🍣</div>
+        <div class="restaurant-info">
+          <div class="restaurant-header"><h3>Sushi Tokyo</h3><span class="rating">★ 4.7</span></div>
+          <p>Japonesa • Sushi</p>
+          <div class="restaurant-meta"><span>🛵 35–45 min</span><span>R$ 6,99 entrega</span></div>
+        </div>
+      </article>
+
+      <article class="restaurant-card" data-category="Brasileira" data-name="Sabor da Casa" onclick="addToCart('Sabor da Casa — Prato Executivo', 27.90)">
+        <div class="restaurant-image brazilian"><span class="discount">25% OFF</span>🍛</div>
+        <div class="restaurant-info">
+          <div class="restaurant-header"><h3>Sabor da Casa</h3><span class="rating">★ 4.9</span></div>
+          <p>Brasileira • Marmitas</p>
+          <div class="restaurant-meta"><span>🛵 20–30 min</span><span>Grátis</span></div>
+        </div>
+      </article>
+
+      <article class="restaurant-card" data-category="Açaí" data-name="Açaí Prime" onclick="addToCart('Açaí Prime — 500ml', 22.90)">
+        <div class="restaurant-image acai"><span class="discount">15% OFF</span>🍇</div>
+        <div class="restaurant-info">
+          <div class="restaurant-header"><h3>Açaí Prime</h3><span class="rating">★ 4.8</span></div>
+          <p>Açaí • Sobremesas</p>
+          <div class="restaurant-meta"><span>🛵 15–25 min</span><span>R$ 3,99 entrega</span></div>
+        </div>
+      </article>
+
+      <article class="restaurant-card" data-category="Doces" data-name="Doce Encanto" onclick="addToCart('Doce Encanto — Bolo Individual', 18.90)">
+        <div class="restaurant-image sweets"><span class="discount">20% OFF</span>🍰</div>
+        <div class="restaurant-info">
+          <div class="restaurant-header"><h3>Doce Encanto</h3><span class="rating">★ 4.9</span></div>
+          <p>Doces • Bolos</p>
+          <div class="restaurant-meta"><span>🛵 25–35 min</span><span>R$ 4,99 entrega</span></div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+  <aside class="cart" id="cart" aria-label="Carrinho">
+    <div class="cart-header">
+      <h2>Seu carrinho</h2>
+      <button type="button" onclick="closeCart()" aria-label="Fechar carrinho">✕</button>
+    </div>
+    <div id="cartItems">
+      <div class="empty-cart">
+        <div>🛒</div>
+        <h3>Seu carrinho está vazio</h3>
+        <p>Escolha algo delicioso para começar.</p>
+      </div>
+    </div>
+    <div class="cart-footer">
+      <div class="total"><span>Total</span><strong id="cartTotal">R$ 0,00</strong></div>
+      <button class="checkout" type="button" onclick="checkout()">Continuar pedido</button>
+    </div>
+  </aside>
+
+  <footer>
+    <div class="footer-logo">✓ MANDOU <strong>BEM</strong></div>
+    <p>Seu pedido. Seu momento. Seu jeito.</p>
+    <div class="footer-links">
+      <span>Sobre nós</span><span>Termos de uso</span><span>Privacidade</span>
+      <span>Seja parceiro</span><span>Trabalhe conosco</span>
+    </div>
+    <p class="copyright">© 2026 MANDOU BEM. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
