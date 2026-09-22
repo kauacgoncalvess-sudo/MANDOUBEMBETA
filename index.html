@@ -1,170 +1,129 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="MANDOU BEM — plataforma de delivery.">
-  <title>MANDOU BEM — Delivery</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MANDOU BEM — Cliente</title><link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="header">
-    <div class="logo">
-      <span class="logo-icon">✓</span>
-      <span>MANDOU <strong>BEM</strong></span>
-    </div>
 
-    <div class="location">
-      📍 <span>Entregar em</span>
-      <strong>São José do Rio Preto</strong> ▾
-    </div>
+<!-- LOGIN -->
+<section class="onboarding active" id="loginScreen">
+  <div class="loginCard">
+    <div class="brandBig"><span>✓</span> MANDOU <strong>BEM</strong></div>
+    <small>SEU CLUBE DE VANTAGENS</small>
+    <h1>Compre. Acumule.<br><em>Mande bem.</em></h1>
+    <p>Entre para descobrir estabelecimentos, acumular pontos e desbloquear novas ilhas de recompensas.</p>
+    <input id="loginEmail" placeholder="Seu e-mail">
+    <button class="primaryBtn" id="loginBtn">Entrar no MANDOU BEM →</button>
+    <span class="demoNote">Protótipo demonstrativo • o login real será conectado ao backend.</span>
+  </div>
+</section>
 
-    <div class="header-actions">
-      <button class="login-btn" type="button">Entrar</button>
-      <button class="cart-button" type="button" onclick="openCart()">
-        🛒 <span>Carrinho</span> <b id="cart-count">0</b>
+<!-- ESCOLHA DO AVATAR -->
+<section class="onboarding" id="avatarScreen">
+  <div class="avatarCard">
+    <div class="stepTag">ETAPA 2 DE 2</div>
+    <div class="brandMini">✓ MANDOU <strong>BEM</strong></div>
+    <h1>Escolha seu avatar</h1>
+    <p>Esse personagem vai acompanhar você na sua jornada pelo MANDOU BEM.</p>
+    <div class="avatarChoices">
+      <button class="avatarOption selected" data-avatar="explorador">
+        <div class="avatarArt explorer">🧑🏻‍🚀</div><b>Explorador</b><small>Pronto para descobrir</small>
+      </button>
+      <button class="avatarOption" data-avatar="aventureira">
+        <div class="avatarArt adventurer">👩🏻‍🦰</div><b>Aventureira</b><small>Vai atrás das recompensas</small>
+      </button>
+      <button class="avatarOption" data-avatar="radical">
+        <div class="avatarArt radical">🧑🏽‍🎨</div><b>Radical</b><small>Sempre quer mandar bem</small>
       </button>
     </div>
-  </header>
+    <button class="primaryBtn" id="avatarBtn">Começar minha jornada →</button>
+  </div>
+</section>
 
-  <section class="hero">
-    <div class="hero-content">
-      <span class="hero-tag">🔥 SEU PEDIDO, SEU JEITO</span>
-      <h1>Bateu a fome?<br><span>MANDOU BEM.</span></h1>
-      <p>Encontre os melhores restaurantes, lanches, mercados e muito mais perto de você.</p>
+<div id="app" class="appHidden">
+<header><div class="logo"><b>✓</b> MANDOU <strong>BEM</strong></div><div class="loc">📍 São José do Rio Preto</div><div class="actions"><button>🔔</button><button data-view="perfil">CE</button></div></header>
 
-      <div class="search-box">
-        <span>🔎</span>
-        <input id="searchInput" type="text" placeholder="Busque por comida ou restaurante..." oninput="searchRestaurants()">
-        <button type="button">Buscar</button>
-      </div>
-    </div>
-  </section>
+<main>
+<section class="view active" id="home">
+  <div class="hero">
+    <div><small>SEU CLUBE DE VANTAGENS</small><h1>Compre, acumule<br><em>e mande bem.</em></h1>
+    <p>Encontre comércios perto de você, acumule pontos em suas compras e troque por benefícios.</p>
+    <div class="search">⌕ <input id="search" placeholder="O que você está procurando?"></div></div>
+    <div class="balance"><small>SEUS PONTOS</small><b id="heroPoints">1.280</b><span>pontos disponíveis</span><button data-view="pontos">Ver meu extrato →</button></div>
+  </div>
 
-  <section class="section">
-    <div class="section-title">
-      <h2>O que você está procurando?</h2>
-      <span>Ver tudo →</span>
-    </div>
+  <div class="journeyMini" onclick="view('recompensas')">
+    <div class="journeyMiniText"><small>SUA JORNADA</small><b id="homeAvatar">🧑🏻‍🚀</b><span>Você está a caminho da próxima ilha.</span></div>
+    <div class="miniProgress"><span id="miniBar"></span></div>
+    <strong><span id="nextIsland">720</span> pts para a próxima ilha →</strong>
+  </div>
 
-    <div class="categories">
-      <div class="category" onclick="filterCategory('Hambúrguer')"><div class="category-icon">🍔</div><p>Hambúrguer</p></div>
-      <div class="category" onclick="filterCategory('Pizza')"><div class="category-icon">🍕</div><p>Pizza</p></div>
-      <div class="category" onclick="filterCategory('Japonesa')"><div class="category-icon">🍣</div><p>Japonesa</p></div>
-      <div class="category" onclick="filterCategory('Brasileira')"><div class="category-icon">🍛</div><p>Brasileira</p></div>
-      <div class="category" onclick="filterCategory('Açaí')"><div class="category-icon">🍇</div><p>Açaí</p></div>
-      <div class="category" onclick="filterCategory('Doces')"><div class="category-icon">🍰</div><p>Doces</p></div>
-      <div class="category" onclick="filterCategory('Bebidas')"><div class="category-icon">🥤</div><p>Bebidas</p></div>
-      <div class="category" onclick="filterCategory('Mercado')"><div class="category-icon">🛒</div><p>Mercado</p></div>
-    </div>
-  </section>
+  <div class="head"><div><small>EXPLORE</small><h2>O que você procura?</h2></div><button data-view="categorias">Ver todas →</button></div>
+  <div class="cats">
+    <button data-filter="Alimentação">🍔<b>Comer</b><small>Restaurantes</small></button>
+    <button data-filter="Padaria">🥐<b>Padarias</b><small>Cafés e doces</small></button>
+    <button data-filter="Compras">🛍️<b>Comprar</b><small>Lojas</small></button>
+    <button data-filter="Beleza">💆<b>Beleza</b><small>Cuidados</small></button>
+    <button data-filter="Automotivo">🚗<b>Seu carro</b><small>Automotivo</small></button>
+    <button data-filter="Serviços">🔧<b>Serviços</b><small>Na região</small></button>
+  </div>
 
-  <section class="promo">
-    <div class="promo-text">
-      <span>OFERTAS ESPECIAIS</span>
-      <h2>Hoje tem<br><strong>MANDOU BEM!</strong></h2>
-      <p>Descontos especiais nos melhores restaurantes.</p>
-      <button type="button">Ver ofertas</button>
-    </div>
-    <div class="promo-emoji">🍔</div>
-  </section>
+  <div class="promo"><div><small>PONTOS EM DOBRO</small><h2>Hoje é dia de mandar bem.</h2><p>Compre nos parceiros selecionados e ganhe 2x pontos.</p></div><strong>2X<br><small>PONTOS</small></strong></div>
 
-  <main class="section restaurants-section">
-    <div class="section-title">
-      <div>
-        <h2>Restaurantes perto de você</h2>
-        <p class="subtitle">Os mais pedidos da região</p>
-      </div>
-      <button class="see-all" type="button" onclick="showAllRestaurants()">Ver todos →</button>
-    </div>
+  <div class="head"><div><small>PERTO DE VOCÊ</small><h2>Em destaque</h2></div><button data-view="explorar">Ver todos →</button></div>
+  <div class="cards" id="featured"></div>
+</section>
 
-    <div class="restaurants" id="restaurants">
-      <article class="restaurant-card" data-category="Hambúrguer" data-name="Burger House" onclick="addToCart('Burger House — Combo Clássico', 34.90)">
-        <div class="restaurant-image burger"><span class="discount">20% OFF</span>🍔</div>
-        <div class="restaurant-info">
-          <div class="restaurant-header"><h3>Burger House</h3><span class="rating">★ 4.8</span></div>
-          <p>Hambúrguer • Lanches</p>
-          <div class="restaurant-meta"><span>🛵 25–35 min</span><span>R$ 5,99 entrega</span></div>
-        </div>
-      </article>
+<section class="view" id="explorar"><div class="title"><small>DESCUBRA</small><h1>Estabelecimentos</h1><p>Comércios, serviços e experiências que fazem parte do MANDOU BEM.</p></div>
+<div class="filters"><input id="exploreSearch" placeholder="🔎 Buscar estabelecimento..."><select id="filter"><option value="">Todas as categorias</option><option>Alimentação</option><option>Padaria</option><option>Compras</option><option>Beleza</option><option>Automotivo</option><option>Serviços</option></select></div>
+<div class="cards" id="all"></div></section>
 
-      <article class="restaurant-card" data-category="Pizza" data-name="Bella Pizza" onclick="addToCart('Bella Pizza — Pizza Média', 49.90)">
-        <div class="restaurant-image pizza"><span class="discount">15% OFF</span>🍕</div>
-        <div class="restaurant-info">
-          <div class="restaurant-header"><h3>Bella Pizza</h3><span class="rating">★ 4.9</span></div>
-          <p>Pizza • Italiana</p>
-          <div class="restaurant-meta"><span>🛵 30–40 min</span><span>R$ 4,99 entrega</span></div>
-        </div>
-      </article>
+<section class="view" id="pontos"><div class="title"><small>FIDELIDADE</small><h1>Meus pontos</h1><p>Acompanhe como você ganhou e utilizou seus pontos.</p></div>
+<div class="stats"><div class="stat dark"><small>SALDO DISPONÍVEL</small><b id="points">1.280</b><span>pontos MANDOU BEM</span><button data-view="recompensas">Ver minha jornada →</button></div><div class="stat"><small>GANHOS ESTE MÊS</small><b>+860</b><span>pontos acumulados</span></div><div class="stat"><small>ILHAS DESBLOQUEADAS</small><b id="islandsUnlocked">1</b><span>na sua jornada</span></div></div>
+<div class="head"><div><small>MOVIMENTAÇÕES</small><h2>Extrato</h2></div></div>
+<div class="transactions">
+<div>➕ <span><b>Padaria do João</b><small>Compra • hoje, 08:42</small></span><strong>+150</strong></div>
+<div>➕ <span><b>Studio Bella</b><small>Compra • ontem, 17:10</small></span><strong>+320</strong></div>
+<div>➖ <span><b>Café grátis</b><small>Resgate • 18/09/2026</small></span><strong class="minus">−300</strong></div>
+<div>➕ <span><b>Burger House</b><small>Compra • 16/09/2026</small></span><strong>+190</strong></div>
+</div></section>
 
-      <article class="restaurant-card" data-category="Japonesa" data-name="Sushi Tokyo" onclick="addToCart('Sushi Tokyo — Combo 20 peças', 59.90)">
-        <div class="restaurant-image sushi"><span class="discount">10% OFF</span>🍣</div>
-        <div class="restaurant-info">
-          <div class="restaurant-header"><h3>Sushi Tokyo</h3><span class="rating">★ 4.7</span></div>
-          <p>Japonesa • Sushi</p>
-          <div class="restaurant-meta"><span>🛵 35–45 min</span><span>R$ 6,99 entrega</span></div>
-        </div>
-      </article>
+<section class="view" id="recompensas">
+  <div class="title"><small>SUA AVENTURA</small><h1>Jornada de recompensas</h1><p>Seu avatar percorre as ilhas conforme você acumula pontos. Cada ilha pode ter uma recompensa ou benefício especial.</p></div>
+  <div class="journeyTop">
+    <div><span class="selectedAvatar" id="journeyAvatar">🧑🏻‍🚀</span><div><small>SEU AVATAR</small><b id="avatarName">Explorador</b></div></div>
+    <div class="journeyBalance"><small>SEU SALDO</small><strong id="journeyPoints">1.280</strong><span>pontos</span></div>
+  </div>
 
-      <article class="restaurant-card" data-category="Brasileira" data-name="Sabor da Casa" onclick="addToCart('Sabor da Casa — Prato Executivo', 27.90)">
-        <div class="restaurant-image brazilian"><span class="discount">25% OFF</span>🍛</div>
-        <div class="restaurant-info">
-          <div class="restaurant-header"><h3>Sabor da Casa</h3><span class="rating">★ 4.9</span></div>
-          <p>Brasileira • Marmitas</p>
-          <div class="restaurant-meta"><span>🛵 20–30 min</span><span>Grátis</span></div>
-        </div>
-      </article>
+  <div class="islandMap" id="islandMap"></div>
 
-      <article class="restaurant-card" data-category="Açaí" data-name="Açaí Prime" onclick="addToCart('Açaí Prime — 500ml', 22.90)">
-        <div class="restaurant-image acai"><span class="discount">15% OFF</span>🍇</div>
-        <div class="restaurant-info">
-          <div class="restaurant-header"><h3>Açaí Prime</h3><span class="rating">★ 4.8</span></div>
-          <p>Açaí • Sobremesas</p>
-          <div class="restaurant-meta"><span>🛵 15–25 min</span><span>R$ 3,99 entrega</span></div>
-        </div>
-      </article>
+  <div class="journeyInfo">
+    <span>🏝️</span><div><b>Como funciona?</b><p>Os marcos de pontos e as recompensas de cada ilha serão definidos pelo estabelecimento. No futuro, o comerciante poderá editar esses valores pelo painel.</p></div>
+  </div>
 
-      <article class="restaurant-card" data-category="Doces" data-name="Doce Encanto" onclick="addToCart('Doce Encanto — Bolo Individual', 18.90)">
-        <div class="restaurant-image sweets"><span class="discount">20% OFF</span>🍰</div>
-        <div class="restaurant-info">
-          <div class="restaurant-header"><h3>Doce Encanto</h3><span class="rating">★ 4.9</span></div>
-          <p>Doces • Bolos</p>
-          <div class="restaurant-meta"><span>🛵 25–35 min</span><span>R$ 4,99 entrega</span></div>
-        </div>
-      </article>
-    </div>
-  </main>
+  <div class="head"><div><small>BENEFÍCIOS</small><h2>Recompensas disponíveis</h2></div></div>
+  <div class="rewards" id="rewards"></div>
+</section>
 
-  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<section class="view" id="categorias"><div class="title"><small>EXPLORE</small><h1>Categorias</h1><p>Encontre o que precisa em poucos toques.</p></div><div class="catGrid">
+<button data-filter="Alimentação">🍔<b>Alimentação</b><small>Restaurantes e lanches</small></button>
+<button data-filter="Padaria">🥐<b>Padarias e cafés</b><small>Seu café e aquele doce</small></button>
+<button data-filter="Compras">🛍️<b>Compras</b><small>Lojas e varejo</small></button>
+<button data-filter="Beleza">💆<b>Beleza e bem-estar</b><small>Salões e estética</small></button>
+<button data-filter="Automotivo">🚗<b>Automotivo</b><small>Seu carro em dia</small></button>
+<button data-filter="Serviços">🔧<b>Serviços</b><small>Soluções para sua rotina</small></button>
+</div></section>
 
-  <aside class="cart" id="cart" aria-label="Carrinho">
-    <div class="cart-header">
-      <h2>Seu carrinho</h2>
-      <button type="button" onclick="closeCart()" aria-label="Fechar carrinho">✕</button>
-    </div>
-    <div id="cartItems">
-      <div class="empty-cart">
-        <div>🛒</div>
-        <h3>Seu carrinho está vazio</h3>
-        <p>Escolha algo delicioso para começar.</p>
-      </div>
-    </div>
-    <div class="cart-footer">
-      <div class="total"><span>Total</span><strong id="cartTotal">R$ 0,00</strong></div>
-      <button class="checkout" type="button" onclick="checkout()">Continuar pedido</button>
-    </div>
-  </aside>
+<section class="view" id="perfil"><div class="title"><small>MINHA CONTA</small><h1>Meu perfil</h1><p>Gerencie seus dados e preferências.</p></div>
+<div class="profile"><div class="avatar" id="profileAvatar">🧑🏻‍🚀</div><div><h2>Camila Esser</h2><p>camila@email.com</p><small>MEMBRO DESDE 2026</small></div><button>Editar</button></div>
+<div class="menu"><button>📍 <span>Meus endereços</span>›</button><button>💳 <span>Formas de pagamento</span>›</button><button>❤️ <span>Favoritos</span>›</button><button>🔔 <span>Notificações</span>›</button><button>❓ <span>Ajuda e suporte</span>›</button></div></section>
 
-  <footer>
-    <div class="footer-logo">✓ MANDOU <strong>BEM</strong></div>
-    <p>Seu pedido. Seu momento. Seu jeito.</p>
-    <div class="footer-links">
-      <span>Sobre nós</span><span>Termos de uso</span><span>Privacidade</span>
-      <span>Seja parceiro</span><span>Trabalhe conosco</span>
-    </div>
-    <p class="copyright">© 2026 MANDOU BEM. Todos os direitos reservados.</p>
-  </footer>
+<section class="view" id="detalhe"><button class="back" data-view="explorar">← Voltar</button><div id="detail"></div></section>
+</main>
 
-  <script src="script.js"></script>
-</body>
-</html>
+<nav><button class="active" data-view="home">⌂<span>Início</span></button><button data-view="explorar">⌕<span>Explorar</span></button><button data-view="pontos">◉<span>Pontos</span></button><button data-view="recompensas">🎁<span>Jornada</span></button><button data-view="perfil">◯<span>Perfil</span></button></nav>
+<div class="toast" id="toast"></div>
+</div>
+<script src="script.js"></script>
+</body></html>
